@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Scheduler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        #clear-all {
+            background-color: #e74c3c;
+        }
+        
+        #clear-all:hover {
+            background-color: #c0392b;
+        }
+        
+        .event-item, .scheduled-event-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        
+        .event-header {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .event-details p {
+            margin: 5px 0;
+        }
+        
+        #error-message {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        
+        #event-count, #scheduled-count {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+        
+        .button-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Scheduler</h1>
+    
+    <form id="add-event-form">
+        <h2>Add New Event</h2>
+        
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="event-name">Event Name</label>
+        <input type="text" id="event-name" name="event-name" required>
+        
+        <label for="venue">Venue</label>
+        <input type="text" id="venue" name="venue" required>
+        
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+        
+        <label for="start-time">Start Time</label>
+        <input type="time" id="start-time" name="start-time" required>
+        
+        <label for="end-time">End Time</label>
+        <input type="time" id="end-time" name="end-time" required>
+        
+        <label>
+            <input type="checkbox" id="priority" name="priority">
+            High Priority
+        </label>
+        
+        <button type="submit">Add Event</button>
+    </form>
+    
+    <h2>Events to Schedule <span id="event-count">0 events</span></h2>
+    <div id="events-list"></div>
+    
+    <div class="button-container">
+        <button id="schedule-events">Schedule Events</button>
+        <button id="clear-all">Clear All</button>
+    </div>
+    
+    <div id="error-message"></div>
+    
+    <h2>Scheduled Events <span id="scheduled-count">0 events</span></h2>
+    <div id="scheduled-events-list"></div>
+    
+    <script src="/static/app.js"></script>
+</body>
+</html>
