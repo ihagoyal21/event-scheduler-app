@@ -9,16 +9,20 @@ RUN apt-get update && apt-get install -y \
     libboost-all-dev \
     libssl-dev
 
-# Copy your app files into the container
+# Create working directory inside the container
 WORKDIR /app
+
+# Copy only the necessary files into the container (excluding build/ to avoid cache conflicts)
 COPY . /app
 
-# Build your app (adjust if you use a build folder)
+# Remove any old CMake cache files to avoid conflicts
+RUN rm -rf CMakeCache.txt CMakeFiles/
+
+# Create the build directory and run cmake
 RUN mkdir -p build && cd build && cmake .. && make
 
-# Expose the port your app runs on (e.g., 8080)
+# Expose the port your app runs on (if required)
 EXPOSE 8080
 
-# Run the server (adjust path if needed)
+# Run the application (adjust path if necessary)
 CMD ["./build/bin/event_scheduler_cpp"]
-
